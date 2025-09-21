@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slider animations</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Sliders <span>One Piece</span> Animations</h1>
+    <div class="slider">
+        <div class="slides">
+            <img src="imgs/img1.jpg" alt="Slide 1" class="slide active">
+            <img src="imgs/img2.jpg" alt="Slide 2" class="slide">
+            <img src="imgs/img3.jpg" alt="Slide 3" class="slide">
+            <img src="imgs/img4.jpg" alt="Slide 4" class="slide">   
+            <!-- primera imagen clonada para bucle sin espacios en blanco -->
+            <img src="imgs/img1.jpg" alt="Slide 1" class="slide active">
+
+        </div>
+    </div>
+
+    <div class="carousel">
+        <div class="cards">
+            <img src="imgs/image1.jpg" alt="Slide 1">
+            <img src="imgs/image2.jpg" alt="Slide 2">
+            <img src="imgs/image3.jpg" alt="Slide 3">
+            <img src="imgs/image4.jpg" alt="Slide 4">
+            <!-- primera imagen clonada para bucle sin espacios en blanco -->
+            <img src="imgs/image1.jpg" alt="Slide 1">
+        </div>
+    </div>
+</body>
+
+<script>
+  const slides = document.querySelector('.slides');
+  const cards = document.querySelector('.cards');
+  const cardsImages = document.querySelectorAll('.cards img');
+  const images = document.querySelectorAll('.slides img');
+  const total = images.length;
+  const totalCards = cardsImages.length;
+
+  let index = 0;
+
+
+  function changeSlide() {
+    index++;
+    slides.style.transition = "transform 1s ease-in-out";
+    slides.style.transform = `translateX(${-885 * index}px)`;
+    cards.style.transition = "transform 1s ease-in-out";
+    cards.style.transform = `translateX(${-300 * index}px)`;
+
+
+    // cuando llega al final, reinicia sin que se note
+    if (index === total-1) {
+      setTimeout(() => {
+        slides.style.transition = "none"; // quitar animación
+        slides.style.transform = `translateX(0)`; // volver al inicio
+        index = 0;
+      }, 1000); // esperar a que termine la animación
+    }
+  }
+
+  setInterval(changeSlide, 3000); // cada 3s cambia
+</script>
+
+
+
+
+</html>
